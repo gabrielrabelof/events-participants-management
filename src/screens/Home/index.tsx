@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { styles } from './styles'
@@ -6,7 +6,27 @@ import { Participant } from '../../components/Participant'
 
 export function Home() {
   const participants = ['Gabriel', 'Luke', 'Jhon', 'Paul', 'Matthew', 'Petter', 'Michael', 'Leo']
-  //const participants = ''
+
+  function handleAddParticipant() {
+    if (participants.includes('Taylor')) {
+      return Alert.alert("Participant exists", "This participant has already been added to the list.")
+    }
+
+    Alert.alert("Participant added", "This participant was added successfully.")
+  }
+
+  function handleRemoveParticipant() {
+    Alert.alert("Remove participant", "Are you sure that you want to remove this participant?", [
+      {
+        text: 'Yes', 
+        onPress: () => Alert.alert("Participant removed", "This participant was removed successfully.")
+      },
+      {
+        text: 'No',
+        style: 'cancel'
+      }
+    ])
+  }
 
   return (
     <View style={styles.container}>
@@ -21,7 +41,11 @@ export function Home() {
           placeholder="Enter participant's name"
           placeholderTextColor="#8c8c8c"
         />
-        <TouchableOpacity style={styles.addButton} activeOpacity={0.7}>
+        <TouchableOpacity 
+          style={styles.addButton} 
+          activeOpacity={0.7}
+          onPress={handleAddParticipant}
+        >
           <AntDesign name="plus" size={20} color="#fff" />
         </TouchableOpacity>
       </View>
@@ -32,7 +56,7 @@ export function Home() {
           data={participants}
           keyExtractor={item => item}
           renderItem={({item}) => (
-            <Participant name={item}/>
+            <Participant name={item} onRemove={handleRemoveParticipant}/>
           )}
           ListEmptyComponent=
           {
