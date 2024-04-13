@@ -1,9 +1,13 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import AntDesign from 'react-native-vector-icons/AntDesign';
+import { View, Text, TextInput, TouchableOpacity, FlatList } from 'react-native'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import { styles } from './styles'
+import { Participant } from '../../components/Participant'
 
 export function Home() {
+  const participants = ['Gabriel', 'Luke', 'Jhon', 'Paul', 'Matthew', 'Petter', 'Michael', 'Leo']
+  //const participants = ''
+
   return (
     <View style={styles.container}>
       <View style={styles.eventDetails}>
@@ -21,6 +25,20 @@ export function Home() {
           <AntDesign name="plus" size={20} color="#fff" />
         </TouchableOpacity>
       </View>
+
+        <Text style={styles.listTitle}>Participants ({participants.length})</Text>
+
+        <FlatList
+          data={participants}
+          keyExtractor={item => item}
+          renderItem={({item}) => (
+            <Participant name={item}/>
+          )}
+          ListEmptyComponent=
+          {
+              <Text style={styles.emptyListDescription}>No participants were added to the event list. add by entering the name above and pressing the button</Text>
+          }
+        />
     </View>
   )
 }

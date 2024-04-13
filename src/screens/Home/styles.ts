@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native"
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingHorizontal: 22,
     backgroundColor: '#101010'
   },
   eventDetails: {
-    padding: 32,
+    paddingVertical: 32,
     marginTop: 12
   },
   eventName: {
@@ -20,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   form: { 
     flexDirection: 'row',
-    marginHorizontal: 28
+    paddingHorizontal: 4
   },
   nameField: {
     flex: 1,
@@ -37,5 +38,20 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  listTitle: {
+    marginTop: 38,
+    marginBottom: 10,
+    fontSize: 22,
+    color: '#fff',
+    fontWeight: 'bold'
+  },
+  emptyListDescription: {
+    color: '#8c8c8c',
+    fontSize: 16,
+    marginTop: 32,
+    alignSelf: 'center',
+    marginHorizontal: 16
   }
+  
 })
