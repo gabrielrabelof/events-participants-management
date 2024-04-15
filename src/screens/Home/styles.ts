@@ -51,7 +51,6 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 32,
     alignSelf: 'center',
-    marginHorizontal: 16
   }
   
 })
