@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 22,
-    backgroundColor: '#101010'
+    backgroundColor: '#131016'
   },
   eventDetails: {
     paddingVertical: 32,
@@ -16,23 +16,23 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   eventDate: {
-    color: '#8c8c8c',
+    color: '#6B6B6B',
     fontSize: 16
   },
   form: { 
     flexDirection: 'row',
     paddingHorizontal: 4
   },
-  nameField: {
+  input: {
     flex: 1,
-    backgroundColor: '#222222',
+    backgroundColor: '#1F1E25',
     color: '#fff',
     marginRight: 12,
     borderRadius: 5,
     paddingLeft: 10
   },
   addButton: {
-    backgroundColor: 'green',
+    backgroundColor: '#31CF67',
     height: 52,
     width: 52,
     borderRadius: 5,

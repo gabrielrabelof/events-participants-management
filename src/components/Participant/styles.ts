@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#222222',
+    backgroundColor: '#1F1E25',
     alignItems: 'center',
     borderRadius: 5,
     marginBottom: 10,
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     marginLeft: 10
   },
   removeButton: {
-    backgroundColor: 'red',
+    backgroundColor: '#E23C44',
     height: 52,
     width: 52,
     borderRadius: 5,

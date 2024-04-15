@@ -17,7 +17,7 @@ export function Home() {
 
       <View style={styles.form}>
         <TextInput 
-          style={styles.nameField} 
+          style={styles.input} 
           placeholder="Enter participant's name"
           placeholderTextColor="#8c8c8c"
         />
