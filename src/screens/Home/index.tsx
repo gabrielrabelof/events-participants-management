@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
@@ -5,21 +6,31 @@ import { styles } from './styles'
 import { Participant } from '../../components/Participant'
 
 export function Home() {
-  const participants = ['Gabriel', 'Luke', 'Jhon', 'Paul', 'Matthew', 'Petter', 'Michael', 'Leo']
+  const [participants, setParticipants] = useState<string[]>([])
+  const [participantName, setParticipantName] = useState("")
 
-  function handleAddParticipant() {
-    if (participants.includes('Taylor')) {
-      return Alert.alert("Participant exists", "This participant has already been added to the list.")
-    }
-
-    Alert.alert("Participant added", "This participant was added successfully.")
+  function capitalize(participantName: string): string {
+    return participantName.replace(/\b\w/g, char => char.toUpperCase());
   }
 
-  function handleRemoveParticipant() {
-    Alert.alert("Remove participant", "Are you sure that you want to remove this participant?", [
+  function handleAddParticipant() {
+    if (participantName == "") {
+      return Alert.alert("Unnamed participant", "A participant cannot be added without a name.")
+    }
+
+    if (participants.includes(capitalize(participantName))) {
+      return Alert.alert("Participant exists", `${capitalize(participantName)} has already been added to the list.`)
+    }
+
+    setParticipants(prevState => [...prevState, capitalize(participantName)])
+    setParticipantName("")
+  }
+
+  function handleRemoveParticipant(name: string) {
+    Alert.alert("Remove", `Remove participant ${name}?`, [
       {
         text: 'Yes', 
-        onPress: () => Alert.alert("Participant removed", "This participant was removed successfully.")
+        onPress: () => setParticipants(prevState => prevState.filter(participant => participant != name))
       },
       {
         text: 'No',
@@ -40,6 +51,8 @@ export function Home() {
           style={styles.input} 
           placeholder="Enter participant's name"
           placeholderTextColor="#8c8c8c"
+          value={capitalize(participantName)}
+          onChangeText={setParticipantName}
         />
         <TouchableOpacity 
           style={styles.addButton} 
@@ -56,12 +69,15 @@ export function Home() {
           data={participants}
           keyExtractor={item => item}
           renderItem={({item}) => (
-            <Participant name={item} onRemove={handleRemoveParticipant}/>
+            <Participant 
+              key={item}
+              name={item} 
+              onRemove={() => handleRemoveParticipant(item)}/>
           )}
-          ListEmptyComponent=
-          {
-              <Text style={styles.emptyListDescription}>No participants were added to the event list. add by entering the name above and pressing the button</Text>
-          }
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent= {() => (
+            <Text style={styles.emptyListDescription}>No participants were added to the event list.</Text>
+          )}
         />
     </View>
   )

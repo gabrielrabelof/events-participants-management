@@ -12,6 +12,7 @@ export function Participant({name, onRemove}: Props) {
   return (
     <View style={styles.card}>
       <Text style={styles.name}>{name}</Text>
+      
       <TouchableOpacity 
         style={styles.removeButton} 
         activeOpacity={0.7}
